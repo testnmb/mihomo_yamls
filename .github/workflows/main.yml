@@ -1,4 +1,4 @@
-Name: Update File Test
+name: Update File Test
 
 on:
   workflow_dispatch: # 允许手动触发
