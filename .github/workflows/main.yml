@@ -99,7 +99,7 @@ jobs:
           # --- iKeLee ---
           mkdir -p "General_Config/iKeLee"
           curl -s -o "General_Config/iKeLee/Clash_Sample.yaml" \
-            "https://raw.githubusercontent.com/luestr/ProxyResource/refs/heads/main/Tool/Clash/Config/Clash_Sample_Configuration_By_iKeLee.yaml"
+            "https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Clash/Config/Clash_Sample_Config_By_iKeLee.yaml"
 
 
           # ==========================================
