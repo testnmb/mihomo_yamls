@@ -2,51 +2,64 @@ name: Backup & Cleanup
 
 on:
   workflow_dispatch: # 允许手动触发
-  schedule:
-    - cron: '0 20 * * *' # 每天晚上 20:00 (UTC) 自动运行一次，可自行修改
+  workflow_run:      # 监听第二个工作流 (生成文档) 完成后触发
+    workflows: ["Generate Sub-READMEs"]
+    types:
+      - completed
 
 permissions:
-  contents: write  # 允许创建 Release
-  actions: write   # 允许删除旧的工作流运行记录
+  contents: write # 允许创建 Release
+  actions: write  # 允许删除 Workflow Runs
 
 jobs:
   backup-and-release:
     runs-on: ubuntu-latest
+    # 仅在“生成文档”成功后，或者手动触发时运行
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     steps:
       - name: 检查代码仓库
         uses: actions/checkout@v4
 
-      - name: 获取当前时间戳
-        id: date
+      - name: 获取时间戳
         run: echo "TIMESTAMP=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
 
-      - name: 打包配置文件 (排除工作流目录)
+      - name: 生成明细并打包
         run: |
-          # 安装 zip (通常 ubuntu-latest 自带，防止万一)
           sudo apt-get install -y zip
+
+          # --- 1. 生成 Release 描述文档 (包含文件明细) ---
+          echo "## 📦 备份文件明细 (File Manifest)" > release_body.md
+          echo "> 备份时间 (Time): ${{ env.TIMESTAMP }}" >> release_body.md
+          echo "" >> release_body.md
+          echo "### 📄 包含文件列表：" >> release_body.md
+          echo '```text' >> release_body.md
           
-          # 打包当前目录下所有内容
-          # -r: 递归
-          # -x: 排除 .git 文件夹和 .github 文件夹 (即工作流目录)
-          zip -r "Config_Backup_${{ env.TIMESTAMP }}.zip" . -x ".git/*" ".github/*" "README.md"
+          # 查找当前目录下所有文件
+          # 排除 .git, .github 目录
+          # 排除 release_body.md 和 .zip 文件自身
+          # sed 's|^./||' 用于去掉路径开头的 ./
+          find . -type f \
+            -not -path '*/.git/*' \
+            -not -path '*/.github/*' \
+            -not -name "release_body.md" \
+            -not -name "*.zip" \
+            | sort | sed 's|^./||' >> release_body.md
+            
+          echo '```' >> release_body.md
 
-          echo "打包完成："
-          ls -lh "Config_Backup_${{ env.TIMESTAMP }}.zip"
+          # --- 2. 打包文件 ---
+          # -x 排除工作流文件、git文件、根目录README和临时描述文件
+          zip -r "Config_Backup_${{ env.TIMESTAMP }}.zip" . -x ".git/*" ".github/*" "README.md" "release_body.md"
 
-      - name: 创建 Release 并上传备份
+          echo "✅ 打包完成，明细已生成。"
+
+      - name: 发布 Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: "backup-${{ env.TIMESTAMP }}"
           name: "📅 自动备份: ${{ env.TIMESTAMP }}"
-          body: |
-            ## 🗃️ 配置文件定期备份
-            
-            > 自动生成的备份文件，包含截至目前的所有配置文件。
-            
-            - **时间**: ${{ env.TIMESTAMP }}
-            - **内容**: 排除工作流文件的纯净配置包
-          files: |
-            Config_Backup_${{ env.TIMESTAMP }}.zip
+          body_path: release_body.md  # 使用刚才生成的明细文件作为 Release 内容
+          files: Config_Backup_${{ env.TIMESTAMP }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -54,11 +67,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: backup-and-release # 备份成功后再清理
     steps:
-      - name: 清理旧的工作流运行记录
+      - name: 强力清理旧记录
         uses: Mattraks/delete-workflow-runs@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
-          retain_days: 3    # 保留最近 3 天的记录
-          keep_minimum_runs: 3 # 每个工作流至少保留 3 个最新的记录
-          # delete_workflow_pattern: "Update File Test" # (可选) 指定只清理特定的工作流，不写则清理所有
+          retain_days: 0        # 0 = 删除所有非今天的记录
+          keep_minimum_runs: 1  # 至少保留最新的 1 条成功记录
+          delete_workflow_pattern: "Update File Test" # 清理主抓取任务的记录
