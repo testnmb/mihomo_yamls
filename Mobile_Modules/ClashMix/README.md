@@ -8,4 +8,4 @@
 
 | 文件名 (Filename) | 大小 (Size) | 在线查看 (Link) |
 | :--- | :--- | :--- |
-| **config.yaml** | 9.1 KB | [查看配置](https://github.com/HenryChiao/mihomo_yamls/blob/main/Mobile_Modules/ClashMix/config.yaml) |
+| **config.yaml** | 6.5 KB | [查看配置](https://github.com/HenryChiao/mihomo_yamls/blob/main/Mobile_Modules/ClashMix/config.yaml) |
