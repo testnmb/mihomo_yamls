@@ -20,17 +20,50 @@
 
 ## 📂 配置分类导航 (Categories)
 
-> 请点击下方表格中的 **分类标题** 进入对应文件夹查看详细列表。
+> 请点击卡片标题进入对应文件夹查看详细列表。
 
-| **1️⃣ 官方与基础示例** | **2️⃣ 通用进阶配置 (推荐)** |
-| :--- | :--- |
-| **[📂 Official Examples](./Official_Examples)** | **[📂 General Config](./General_Config)** |
-| 🎓 **适合人群**: 开发者、从零学习者<br>✨ **特点**: 收录 Wiki 标准 `rule-set` 和 `geox` 模板。<br>🌱 **用途**: 最纯净的参考标准，适合魔改。 | 💻 **适合人群**: PC / Mac / 手机日常用户<br>🚀 **特点**: 包含 HenryChiao, 666OS, JohnsonRan 等大佬作品。<br>🔥 **内容**: 分流规则、去广告、自动故障转移。 |
-
-| **3️⃣ Smart / 路由专用** | **4️⃣ 安卓手机模块** |
-| :--- | :--- |
-| **[📂 Smart Mode](./Smart_Mode)** | **[📂 Mobile Modules](./Mobile_Modules)** |
-| 🏠 **适合人群**: OpenClash、软路由、SmartDNS<br>🛠️ **特点**: 侧重 DNS 优化与底层网络接管。<br>🧠 **用途**: 适合家庭网络网关设备。 | 📱 **适合人群**: Magisk / KernelSU 模块用户<br>🧩 **特点**: 提取自 Surfing, Box 等透明代理模块。<br>🔌 **用途**: 配合 ROOT 模块使用的内置配置。 |
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h3>1️⃣ <a href="./Official_Examples">官方与基础示例</a></h3>
+      <p><b>📂 <a href="./Official_Examples">Official Examples</a></b></p>
+      <ul>
+        <li>🎓 <b>适合</b>: 开发者、从零学习者</li>
+        <li>✨ <b>特点</b>: 收录 Wiki 标准 <code>rule-set</code> 和 <code>geox</code> 模板。</li>
+        <li>🌱 <b>用途</b>: 最纯净的参考标准，适合魔改。</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3>2️⃣ <a href="./General_Config">通用进阶配置 (推荐)</a></h3>
+      <p><b>📂 <a href="./General_Config">General Config</a></b></p>
+      <ul>
+        <li>💻 <b>适合</b>: PC / Mac / 手机日常用户</li>
+        <li>🚀 <b>特点</b>: 包含 多位等大佬热门作品。</li>
+        <li>🔥 <b>用途</b>: 主力推荐，含分流、去广告、故障转移。</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>3️⃣ <a href="./Smart_Mode">Smart / 路由专用</a></h3>
+      <p><b>📂 <a href="./Smart_Mode">Smart Mode</a></b></p>
+      <ul>
+        <li>🏠 <b>适合</b>: OpenClash、软路由、SmartDNS</li>
+        <li>🛠️ <b>特点</b>: 侧重smart规则的延伸。</li>
+        <li>🧠 <b>用途</b>: 适合家庭网络网关设备。</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3>4️⃣ <a href="./Mobile_Modules">安卓手机模块</a></h3>
+      <p><b>📂 <a href="./Mobile_Modules">Mobile Modules</a></b></p>
+      <ul>
+        <li>📱 <b>适合</b>: Magisk / KernelSU 模块用户</li>
+        <li>🧩 <b>特点</b>: 提取自 Surfing, Box 等透明代理模块。</li>
+        <li>🔌 <b>用途</b>: 配合 ROOT 模块使用的内置配置。</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -50,7 +83,7 @@
 
 ## 📖 如何使用 (Usage)
 
-1.  点击上方的 **[📂 配置分类导航](#-配置分类导航-categories)** 中的蓝色标题，进入子文件夹。
+1.  点击上方 **分类导航** 中的标题，进入子文件夹。
 2.  在子页面的表格中，浏览并找到你需要的 `.yaml` 配置。
 3.  点击对应行的 **"查看配置"** 链接。
 4.  在文件详情页，点击右上角的 `Raw` 按钮获取直链，或者直接复制内容到你的客户端中。
