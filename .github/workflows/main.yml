@@ -170,7 +170,7 @@ jobs:
           # --- AkashaProxy ---
           mkdir -p "Mobile_Modules/AkashaProxy"
           curl -s -o "Mobile_Modules/AkashaProxy/config.yaml" \
-            "https://raw.githubusercontent.com/akashaProxy/akashaProxy/45a4b0a20fde76c6ffe805f94431078848eb0dad/module/src/config.example.yaml"
+            "https://raw.githubusercontent.com/akashaProxy/akashaProxy/refs/heads/master/module/src/config.example.yaml"
 
           # --- ClashMix ---
           mkdir -p "Mobile_Modules/ClashMix"
