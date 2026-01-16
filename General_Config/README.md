@@ -16,6 +16,7 @@
 | **iKeLee** | 📄 [Clash Sample](https://github.com/HenryChiao/mihomo_yamls/blob/main/General_Config/iKeLee/Clash_Sample.yaml) | 经典 Clash 模板风格 | [luestr/ProxyResource](https://github.com/luestr/ProxyResource) |
 | **Fᴜғᴜ** | 📄 [ConfigForClash](https://github.com/HenryChiao/mihomo_yamls/blob/main/General_Config/fufu/ConfigForClash.yaml) | 经典 Clash 模板风格 | [sunfing/iNg](https://github.com/sunfing/iNg) |
 | **liuran001** | 📄 [ConfigForClash](https://github.com/HenryChiao/mihomo_yamls/blob/main/General_Config/liuran001/config.yaml) | 经典 Clash 模板风格 | [liuran001/config.yanl](https://gist.githubusercontent.com/liuran001/5ca84f7def53c70b554d3f765ff86a33) |
+| **WANSWU** | 📄 [Config](https://github.com/HenryChiao/mihomo_yamls/blob/main/General_Config/wanswu/config.yaml) | 经典 Clash 模板风格 | [wanswu/my-backup](https://github.com/wanswu/my-backup) |
 
 
 [🔙 返回主页 (Return to Home)](../README.md)
